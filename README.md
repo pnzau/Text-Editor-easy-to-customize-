@@ -6,3 +6,6 @@ Built with love, HTML, CSS (Material Design) and JS.
 The icons can be installed through npm ...they are not the normal material design icons. npm install @mdi/font
 
 It uses doc.execCommand's
+
+A spinoff based on the docs from MDN https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand
+and this pen from CodePen https://codepen.io/chrisdavidmills/full/gzYjag/
