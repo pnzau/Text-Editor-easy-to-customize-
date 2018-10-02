@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Custom Material Design Editor</title>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="./MaterialDesign-Webfont-master/css/materialdesignicons.css">
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">MDLEditor</span>
+            </div>
+        </header>
+        <main class="mdl-layout__content">
+            <div class="mdl-grid nz-align__editor-center">
+                <div class="mdl-cell mdl-cell--12-col nz-card-size mdl-shadow--2dp">
+                    <div class="nz-action-btns">
+                        <div id="nz-bold" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon bold-btn"
+                            onmousedown="event.preventDefault();" onclick="doCommand('bold');">
+                            <span class="mdi mdi-format-bold"></span>
+                        </div>
+                        <div id="nz-italic" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon italic-btn" onmousedown="event.preventDefault();"
+                        onclick="doCommand('italic');">
+                            <span class="mdi mdi-format-italic"></span>
+                        </div>
+                        <div id="nz-underline" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon underline-btn" onmousedown="event.preventDefault();" onclick="doCommand('underline');">
+                            <span class="mdi mdi-format-underline"></span>
+                        </div>
+                        <div id="nz-strikethrough" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon strikeThrough-btn"  onmousedown="event.preventDefault();" onclick="doCommand('strikeThrough');">
+                            <span class="mdi mdi-format-strikethrough"></span>
+                        </div>
+                        <div id="nz-redo" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon redo-btn"  onmousedown="event.preventDefault();" onclick="doCommand('redo');">
+                            <span class="mdi mdi-redo-variant"></span>
+                        </div>
+                        <div id="nz-undo" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon undo-btn" onmousedown="event.preventDefault();" onclick="doCommand('undo');">
+                            <span class="mdi mdi-undo-variant"></span>
+                        </div>
+                        <div id="nz-listbulleted" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon insertUnorderedList-btn" onmousedown="event.preventDefault();" onclick="doCommand('insertUnorderedList');">
+                            <span class="mdi mdi-format-list-bulleted"></span>
+                        </div>
+                        <div id="nz-listnumbered" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon insertOrderedList-btn" onmousedown="event.preventDefault();" onclick="doCommand('insertOrderedList');">
+                            <span class="mdi mdi-format-list-numbers"></span>
+                        </div>
+                        <div id="nz-insert-link" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon createLink-btn" onmousedown="event.preventDefault();" onclick="doCommand('createLink');">
+                            <span class="mdi mdi-link-variant"></span>
+                        </div>
+                        <div id="nz-rmv-link" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon unlink-btn" onmousedown="event.preventDefault();" onclick="doCommand('unlink');">
+                            <span class="mdi mdi-link-variant-off"></span>
+                        </div>
+                        <div id="nz-superscript" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon superscript-btn" onmousedown="event.preventDefault();" onclick="doCommand('superscript');">
+                            <span class="mdi mdi-format-superscript"></span>
+                        </div>
+                        <div id="nz-subscript" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon subscript-btn" onmousedown="event.preventDefault();" onclick="doCommand('subscript');">
+                            <span class="mdi mdi-format-subscript"></span>
+                        </div>
+
+                        <!---ToolTips--->
+                        <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--bottom" for="nz-bold">
+                            Bold
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--bottom" for="nz-italic">
+                            Italic
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--bottom" for="nz-underline">
+                            Underline
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--bottom" for="nz-strikethrough">
+                            Strike Through
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--bottom" for="nz-undo">
+                            Undo this Action!
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--bottom" for="nz-redo">
+                            Redo previous Action!
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--bottom" for="nz-listbulleted">
+                            Unordered List
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--bottom" for="nz-listnumbered">
+                            Ordered List
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--bottom" for="nz-insert-link">
+                            Insert A Link
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--bottom" for="nz-rmv-link">
+                            Remove Link
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--bottom" for="nz-superscript">
+                            SuperScript
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--bottom" for="nz-subscript">
+                            SubScript
+                        </div>
+                    </div>
+                    <div>
+                        <div class="nz-textbody-container">
+                            <div class="nz-content-body" contenteditable="true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nz-align-btn">
+                        <button id="nz-send-btn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--icon" onclick="save();">
+                            <span class="mdi mdi-send"></span>
+                        </button>
+                        <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--bottom" for="nz-send-btn">
+                            Send Post!
+                        </div>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" onclick="cancel();">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="./main.js"></script>
+</body>
+
+</html>
